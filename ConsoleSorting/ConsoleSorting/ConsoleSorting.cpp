@@ -1,23 +1,31 @@
 ﻿// ConsoleSorting.cpp
 #include <iostream>
 #include <iomanip>
-#include <string>
+#include <sperror.h>										// для обработки ошибок
+#include <string>											// для одноименной функции
 #include <chrono>                                           // для функций времени
 #include <fstream>                                          // читать и писать файлы
 #include <windows.h>                                        // подключает функционал ОС Windows
+#include <conio.h>
 using namespace std;
+struct BinaryT {											// структура для дерева 
+	int data;												// данные
+	BinaryT* l;												// левая часть дерева
+	BinaryT* r;												// правая часть дерева
+};
+BinaryT* tree = NULL;										// создание корня дерева
 int *arr;                                                   // указатель для выделения памяти под массив
 const char* name = "Best.txt";                              // имена файлов с разными скоростями сортировки Best Average Worst
-int CreateArr() {                                           // функция создание массива
-	cout << "\n Загрузка файла " << name << endl;
+int arrSize() {												// подсчёт строк в файле
 	int size = 0;
 	ifstream file(name);
 	if (!file)
 	{
-		cout << "Файл не открыт!!!" << endl;
-		return 0;
+		perror("name[-]");
+		exit(EXIT_FAILURE);
 	}
-	else {
+	else
+	{
 		while (true)
 		{
 			string v;
@@ -27,11 +35,25 @@ int CreateArr() {                                           // функция с
 			else
 				break;
 		}
-		cin.get();
-		cout << "Всё работает. Файл открыт!" << endl;
+		/*cin.get();*/
 	}
-	arr = new int[size];                                       // выделение памяти под массив
-	for (int i = 0; i < size; i++) {
+	file.close();
+	return size;
+}
+int arrCreation(int kol) {									// создание массива
+	cout << "Загрузка файла " << name << endl;
+	ifstream file(name);
+	if (!file)
+	{
+		perror("name[-]");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		cout << "Файл " << name << " открыт!" << endl;
+	}
+	arr = new int[kol]; // выделение памяти под массив
+	for (int i = 0; i <= kol; i++) {
 		arr[i] = 0;
 		while (true)
 		{
@@ -45,7 +67,6 @@ int CreateArr() {                                           // функция с
 		}
 	}
 	file.close();
-	return size;
 }
 void qsortR(int *mas, int size) {                           // быстрая сортировка; указатель на массив и его размер
 	int i = 0;
@@ -74,7 +95,69 @@ void qsortR(int *mas, int size) {                           // быстрая с
 		qsortR(&mas[i], size - i);
 	}
 }
+void outA(int *q, int kol) {								// вывод массива в консоль
+	if (kol == 0)
+	{
+		cout << " В массиве нет элементов " << endl;
+		exit(EXIT_FAILURE);
+	}
+	for (int i = 0; i <= kol; i++) {
+		cout << q[i] << " ";
+		if (kol == 32) {
+			cout << endl;
+		}
+	}
+	cout << endl;
+}
+void treeCreation(int a, BinaryT ** x) {					// создание дерева
+	if ((*x) == NULL)										// если дерева не существует
+	{
+		(*x) = new BinaryT;                                 // выделяем память
+		(*x)->data = a;										// кладем в выделенное место аргумент 
+		(*x)->l = (*x)->r = NULL;                           // очищаем память для следующего роста
+		return;
+	}
+	if (a > (*x)->data) treeCreation(a, &(*x)->r);			// если аргумент а больше чем текущий элемент, кладем его вправо
+	else treeCreation(a, &(*x)->l);							// иначе кладем его влево
+}
+void readTreee(BinaryT* x) {								// заполнение дерева элементами
+	cout << "Загрузка файла " << name << endl;
+	ifstream file(name);
+	if (!file){
+		perror("name[-]");
+		exit(EXIT_FAILURE);
+	}
+	else {
+		cout << "Файл " << name << " открыт!" << endl;
+		treeCreation(,&tree)
+	}
+}
+void outT(BinaryT* x, int size) {
+	if (x == NULL) {										// если дерево пустое, то отображать нечего, выходим
+		perror("TreeOut[-]");
+		exit(EXIT_FAILURE);
+	}
+	else {
+		outT(x->l, ++size);									// рекурсия левое поддерево
+		for (int i = 0; i <= size; ++i) cout << "|";
+		cout << x->data << endl;
+		size--;
+	}
+	outT(x->r, ++size);									    // рекурсия правое поддерево
+}
 int main() {
+	setlocale(LC_ALL, "Russian");
+	int size = arrSize();
+	arrCreation(size);
+	cout << "Создан массив из " << size+1 << " элементов." << endl;
+	auto start = chrono::system_clock::now();
+	qsortR(arr, size);
+	auto end = chrono::system_clock::now();
+	chrono::duration<double> diff = end - start;
+	cout << "Скорость сортировки массива данных = " << diff.count() << "сек." << endl;
+	cout << " Отсортированный массив" << endl;
+	outA(arr, size);
+
 
 	return 0;
 }
