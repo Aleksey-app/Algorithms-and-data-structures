@@ -1,8 +1,8 @@
 ﻿// ConsoleSorting.cpp
 #include <iostream>
 #include <sperror.h>										// для обработки ошибок
-#include <string>											// для одноименной функции
 #include <chrono>                                           // для функций времени
+#include <string>											// для одноименной функции
 #include <fstream>                                          // читать и писать файлы
 #include <windows.h>                                        // подключает функционал ОС Windows
 #include <conio.h>
@@ -13,7 +13,7 @@ using std::endl;
 using std::ifstream;
 using std::string;
 int *arr;                                                   // указатель для выделения памяти под массив
-const char* name = "Worst.txt";                              // имена файлов с разными скоростями сортировки Best Average Worst
+const char* name = "Best.txt";                              // имена файлов с разными скоростями сортировки Best Average Worst
 int arrSize() {												// подсчёт строк в файле
 	int size = 0;
 	ifstream file(name);
@@ -138,7 +138,11 @@ int main() {
 	cout << "Enter the data to find: ";
 	int data;
 	cin >> data;
+	start = std::chrono::system_clock::now();
 	tree* S = T.search(f, data);
+	end = std::chrono::system_clock::now();
+	std::chrono::duration<double> diffBST = end - start;
+	cout << "Find tree elements = " << diffBST.count() << "sec." << endl;
 	if (S != NULL) {
 		cout << "Yes";
 	}
