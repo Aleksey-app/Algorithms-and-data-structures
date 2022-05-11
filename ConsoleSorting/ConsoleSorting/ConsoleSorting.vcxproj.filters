@@ -18,10 +18,24 @@
     <ClCompile Include="ConsoleSorting.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="tree.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Best.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
+    <Text Include="Worst.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="Average.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tree.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

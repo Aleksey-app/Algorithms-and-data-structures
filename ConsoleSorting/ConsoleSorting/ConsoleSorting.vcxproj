@@ -152,9 +152,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleSorting.cpp" />
+    <ClCompile Include="tree.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Average.txt" />
     <Text Include="Best.txt" />
+    <Text Include="Worst.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
