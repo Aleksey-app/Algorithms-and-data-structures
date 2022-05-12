@@ -45,6 +45,6 @@ double Matrix::multiElements() const
 
 Matrix * Matrix::readfile(const char * name, unsigned _l, unsigned _c)
 {
-	Matrix
+	Matrix ()
 		return nullptr;
 }
