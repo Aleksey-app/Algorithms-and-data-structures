@@ -1,6 +1,10 @@
 //Релизация класса матрица
+#include <iostream>
+#include <fstream>
 #include "Matrix.h"
-
+using std::cout;
+using std::endl;
+using std::ifstream;
 unsigned Matrix::get_line() const
 {
 	return this->line;
@@ -42,9 +46,16 @@ double Matrix::multiElements() const
 	}
 	return multiplication;
 }
-
 Matrix * Matrix::readfile(const char * name, unsigned _l, unsigned _c)
 {
-	Matrix ()
+	ifstream qmatrix(name);
+	if (!qmatrix) {
+		cout << "File " << name << " error!!!" << endl;
+		exit(EXIT_FAILURE);
+	}
+	else {
+		cout << "File " << name << " open" << endl;
+	}
+	Matrix* rfile(_l, _c, 0.0);
 		return nullptr;
 }
