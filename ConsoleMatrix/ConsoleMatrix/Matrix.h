@@ -17,4 +17,5 @@ public:
 	void PrintM(const Matrix& M);		//вывод матрицы в консоль табличный вид
 	void MaxMin(const Matrix& M);		//поиск max и min элемента матрицы
 	void MatrixLine(const Matrix& M);	//последовательность элементов, полученную при обходе по строкам
+	void MatrixColumn(const Matrix& M);	//последовательность элементов, полученную при обходе по столбцам
 };

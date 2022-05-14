@@ -18,5 +18,7 @@ int main()
 	s = Q.sumElements();
 	cout << s << endl;
 	M.MaxMin(Q);
+	M.MatrixLine(Q);
+	M.MatrixColumn(Q);
 	return 0;
 }

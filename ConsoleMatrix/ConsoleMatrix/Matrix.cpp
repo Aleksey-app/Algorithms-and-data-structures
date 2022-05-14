@@ -6,6 +6,7 @@
 using std::cout;
 using std::endl;
 using std::ifstream;
+using std::cin;
 unsigned Matrix::get_line() const
 {
 	return this->line;
@@ -95,9 +96,59 @@ void Matrix::MaxMin(const Matrix & M)
 }
 void Matrix::MatrixLine(const Matrix & M)
 {
-	cout << "Enter line number";
-
-	for (int i = 0; i < M.line; i++) {
-
+	unsigned key;
+	while (true) {
+		cout << "Enter line number	";
+		cin >> key;
+		if (cin.fail()) {
+			cout << "It should be the number" << endl;
+			cin.clear();
+			cin.ignore(32767, '\n');
+			continue;
+		}
+		if (key == 0) {
+			cout << "Number 0 no" << endl;
+			continue;
+		}
+		if (key > M.line) {
+			cout << "Max number of line = " << M.line << endl;
+			continue;
+		}
+		else break;
+	}
+	/*system("cls");*/
+	cout << "Line " << key << endl;
+	for (int j = 0; j < M.column; j++) {
+		cout << std::setw(12) << M(key-1, j) << " | ";
+	}
+	cout << endl;
+}
+void Matrix::MatrixColumn(const Matrix & M)
+{
+	unsigned key;
+	while (true) {
+		cout << "Enter column number	";
+		cin >> key;
+		if (cin.fail()) {
+			cout << "It should be the number" << endl;
+			cin.clear();
+			cin.ignore(32767, '\n');
+			continue;
+		}
+		if (key == 0) {
+			cout << "Number 0 no" << endl;
+			continue;
+		}
+		if (key > M.column) {
+			cout << "Max number of column = " << M.column << endl;
+			continue;
+		}
+		else break;
+	}
+	/*system("cls");*/
+	cout << "Column " << key << endl;
+	for (int j = 0; j < M.line; j++) {
+		cout << std::setw(12) << M(j, key - 1) << " | ";
+		cout << endl;
 	}
 }
