@@ -1,5 +1,6 @@
 //Релизация класса матрица
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include "Matrix.h"
 using std::cout;
@@ -46,7 +47,7 @@ double Matrix::multiElements() const
 	}
 	return multiplication;
 }
-Matrix * Matrix::readfile(const char * name, unsigned _l, unsigned _c)
+Matrix  Matrix::readfile(const char * name, unsigned _l, unsigned _c)
 {
 	ifstream qmatrix(name);
 	if (!qmatrix) {
@@ -56,6 +57,45 @@ Matrix * Matrix::readfile(const char * name, unsigned _l, unsigned _c)
 	else {
 		cout << "File " << name << " open" << endl;
 	}
-	Matrix* rfile(_l, _c, 0.0);
-		return nullptr;
+	double key = 0.0;
+	Matrix rfile(_l, _c, 0.0);
+	for (unsigned i = 0; i < _l; i++) {
+		for (unsigned j = 0; j < _c; j++) {
+			qmatrix >> key;
+			rfile.mat[i][j] = key;
+		}
+	}
+	qmatrix.close();
+	return rfile;
+}
+void Matrix::PrintM(const Matrix & M)
+{
+	for (int i = 0; i < M.line; i++) {
+		for (int j = 0; j < M.column; j++) {
+			cout << std::setw(12) << M(i, j) << " | ";
+		}
+		cout << endl;
+	}
+}
+void Matrix::MaxMin(const Matrix & M)
+{
+	double min = M.mat[0][0], max = M.mat[0][0];
+	for (int i = 0; i < M.line; i++) {
+		for (int j = 0; j < M.column; j++) {
+			if (min > M.mat[i][j]) {
+				min = M.mat[i][j];
+			}
+			if (max < M.mat[i][j]) {
+				max = M.mat[i][j];
+			}
+		}
+	}
+	cout << "Min element Matrix = " << min << endl;
+	cout << "Max element Matrix = " << max << endl;
+}
+void Matrix::MatrixLine(const Matrix & M)
+{
+	for (int i = 0; i < M.line; i++) {
+
+	}
 }

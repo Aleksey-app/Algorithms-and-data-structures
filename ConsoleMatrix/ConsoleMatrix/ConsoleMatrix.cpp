@@ -5,16 +5,18 @@ using std::endl;
 using std::cout;
 int main()
 {
+	const char* name = "Example.txt";
 	Matrix M(4, 6, 16.23);
-	for (int i = 0; i < M.get_line(); i++) {
-		for (int j = 0; j < M.get_column(); j++) {
-			cout << M(i, j) << " | ";
-		}
-		cout << endl;
-	}
+	M.PrintM(M);
 	double s = M.sumElements();
 	cout << s << endl;
 	double q = M.multiElements();
 	cout << q << endl;
+	Matrix Q = M.readfile(name, 4, 6);
+	M.PrintM(Q);
+	s = 0;
+	s = Q.sumElements();
+	cout << s << endl;
+	M.MaxMin(Q);
 	return 0;
 }

@@ -13,5 +13,8 @@ public:
 	double operator()(const unsigned& row, const unsigned& col) const;	//доступ к элементам матрицы
 	double sumElements() const;			//сумма всех элементов
 	double multiElements() const;		//произвидение всех элементов
-	Matrix* readfile(const char* name, unsigned _l, unsigned _c);	//заполнение из файла; имя файла кол-во строк, кол-во столбцов
+	Matrix readfile(const char* name, unsigned _l, unsigned _c);	//заполнение из файла; имя файла кол-во строк, кол-во столбцов
+	void PrintM(const Matrix& M);		//вывод матрицы в консоль табличный вид
+	void MaxMin(const Matrix& M);		//поиск max и min элемента матрицы
+	void MatrixLine(const Matrix& M);	//последовательность элементов, полученную при обходе по строкам
 };
