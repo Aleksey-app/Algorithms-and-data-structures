@@ -18,4 +18,5 @@ public:
 	void MaxMin(const Matrix& M);		//поиск max и min элемента матрицы
 	void MatrixLine(const Matrix& M);	//последовательность элементов, полученную при обходе по строкам
 	void MatrixColumn(const Matrix& M);	//последовательность элементов, полученную при обходе по столбцам
+	void LocalMaxMinMatrix(const Matrix& M);	//список локальных максимумов минимумов 
 };

@@ -152,3 +152,7 @@ void Matrix::MatrixColumn(const Matrix & M)
 		cout << endl;
 	}
 }
+void Matrix::LocalMaxMinMatrix(const Matrix & M)
+{
+
+}

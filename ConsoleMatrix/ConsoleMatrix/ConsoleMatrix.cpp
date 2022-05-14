@@ -10,13 +10,13 @@ int main()
 	M.PrintM(M);
 	double s = M.sumElements();
 	cout << s << endl;
-	double q = M.multiElements();
-	cout << q << endl;
 	Matrix Q = M.readfile(name, 4, 6);
 	M.PrintM(Q);
 	s = 0;
 	s = Q.sumElements();
 	cout << s << endl;
+	double q = Q.multiElements();
+	cout << q << endl;
 	M.MaxMin(Q);
 	M.MatrixLine(Q);
 	M.MatrixColumn(Q);
