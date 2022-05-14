@@ -95,6 +95,8 @@ void Matrix::MaxMin(const Matrix & M)
 }
 void Matrix::MatrixLine(const Matrix & M)
 {
+	cout << "Enter line number";
+
 	for (int i = 0; i < M.line; i++) {
 
 	}
