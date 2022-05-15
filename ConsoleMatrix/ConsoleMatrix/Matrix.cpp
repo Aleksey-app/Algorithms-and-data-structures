@@ -2,11 +2,13 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
+#include <vector>
 #include "Matrix.h"
 using std::cout;
 using std::endl;
 using std::ifstream;
 using std::cin;
+using std::vector;
 unsigned Matrix::get_line() const
 {
 	return this->line;
@@ -152,7 +154,12 @@ void Matrix::MatrixColumn(const Matrix & M)
 		cout << endl;
 	}
 }
-void Matrix::LocalMaxMinMatrix(const Matrix & M)
-{
-
+void Matrix::LocalMaxMinMatrix(const Matrix & M) {
+	vector<int> max, min;	//empty vector to store points of local maxima and minima
+	if (M.mat[0][0] > M.mat[0][1]) {
+		max.push_back(0);
+	}
+	else if (M.mat[0][0] < M.mat[0][1]) {
+		min.push_back(0);
+	}
 }
