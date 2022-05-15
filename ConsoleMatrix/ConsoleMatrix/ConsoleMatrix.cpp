@@ -6,7 +6,7 @@ using std::cout;
 int main()
 {
 	const char* name = "Example.txt";
-	Matrix M(4, 6, 16.23);
+	Matrix M(2, 2, 16.23);
 	M.PrintM(M);
 	double s = M.sumElements();
 	cout << s << endl;
