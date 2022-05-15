@@ -193,7 +193,12 @@ void Matrix::LocalMaxMinMatrix(const Matrix & M) {
 			min.push_back(MinSum);
 			MinSum++;
 		}
-		////////////////////////////////
+		for (int i = 0; i < M.line; i++) {
+			for (int j = 0; j < M.column; j++) {
+				////////////////////////
+			
+			}
+		}
 		if (max.size() > 0) {
 			cout << "Points of Local maxima found " << MaxSum << " : ";
 			for (int a : max) {
