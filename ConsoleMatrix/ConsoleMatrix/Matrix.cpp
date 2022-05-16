@@ -193,11 +193,28 @@ void Matrix::LocalMaxMinMatrix(const Matrix & M) {
 			min.push_back(MinSum);
 			MinSum++;
 		}
-		for (int i = 0; i < M.line; i++) {
-			for (int j = 0; j < M.column; j++) {
-				////////////////////////
-			
+		//верхняя строчка
+		if (M.column > 2) {
+			for (int j = 1; j < M.column - 1; j++) {
+				if (M.mat[0][j] > M.mat[0][j - 1] && M.mat[0][j] > M.mat[1][j - 1] && M.mat[0][j] > M.mat[1][j] && M.mat[0][j] > M.mat[1][j + 1] && M.mat[0][j] > M.mat[0][j + 1]) {
+					max.push_back(MaxSum);
+					MaxSum++;
+				}
+				if (M.mat[0][j] < M.mat[0][j - 1] && M.mat[0][j] < M.mat[1][j - 1] && M.mat[0][j] < M.mat[1][j] && M.mat[0][j] < M.mat[1][j + 1] && M.mat[0][j] < M.mat[0][j + 1]) {
+					min.push_back(MinSum);
+					MinSum++;
+				}
 			}
+		}
+		//правая боковая колонка
+		if (M.line > 2) {
+			for (int i = 1; i < M.line - 1; i++) {
+				if (M.mat[i][column - 1] > M.mat[i - 1][column - 1] && M.mat[i][column - 1] > M.mat[i - 1][column - 2] && M.mat[i][column - 1] > M.mat[i][column - 2] && M.mat[i][column - 1] > M.mat[i + 1][column - 2] && M.mat[i][column - 1] > M.mat[i + 1][column - 1]) {
+					max.push_back(MaxSum);
+					MaxSum++;
+				}
+			}
+
 		}
 		if (max.size() > 0) {
 			cout << "Points of Local maxima found " << MaxSum << " : ";
