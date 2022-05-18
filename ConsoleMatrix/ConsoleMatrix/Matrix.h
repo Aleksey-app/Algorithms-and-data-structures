@@ -19,4 +19,5 @@ public:
 	void MatrixLine(const Matrix& M);	//последовательность элементов, полученную при обходе по строкам
 	void MatrixColumn(const Matrix& M);	//последовательность элементов, полученную при обходе по столбцам
 	void LocalMaxMinMatrix(const Matrix& M);	//список локальных максимумов минимумов 
+	void MinLine(const Matrix& M);		//минимум из максимальных элементов строк
 };

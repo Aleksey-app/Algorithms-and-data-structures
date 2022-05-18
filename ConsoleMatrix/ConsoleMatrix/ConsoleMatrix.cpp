@@ -18,8 +18,9 @@ int main()
 	double q = Q.multiElements();
 	cout << q << endl;
 	M.MaxMin(Q);
-	M.MatrixLine(Q);
-	M.MatrixColumn(Q);
+	/*M.MatrixLine(Q);
+	M.MatrixColumn(Q);*/
 	M.LocalMaxMinMatrix(Q);
+	M.MinLine(Q);
 	return 0;
 }

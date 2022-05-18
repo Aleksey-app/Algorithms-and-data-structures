@@ -2,6 +2,7 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
+#include <algorithm>
 #include <vector>
 #include "Matrix.h"
 using std::cout;
@@ -287,4 +288,19 @@ void Matrix::LocalMaxMinMatrix(const Matrix & M) {
 		cout << "Data analysis requires a matrix, at least 2x2" << endl;
 		exit(EXIT_FAILURE);
 	}
+}
+void Matrix::MinLine(const Matrix & M)
+{
+	vector<double> sum;
+	for (int i = 0; i < M.line; i++) {
+		double max = M.mat[i][0];
+		for (int j = 0; j < M.column; j++) {
+			if (max < M.mat[i][j]) {
+				max = M.mat[i][j];
+			}
+		}
+		sum.push_back(max);
+	}
+	std::sort(sum.begin(), sum.end());
+	cout << "Minimum element in rows " << sum[0] << endl;
 }
