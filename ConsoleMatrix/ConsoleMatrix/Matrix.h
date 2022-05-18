@@ -21,4 +21,5 @@ public:
 	void LocalMaxMinMatrix(const Matrix& M);	//список локальных максимумов минимумов 
 	void MinLine(const Matrix& M);		//минимум из максимальных элементов строк
 	void MaxColumn(const Matrix& M);	//максимум из минимальных элементов столбцов
+	void SadPoint(const Matrix& M);		//список седловых точек
 };

@@ -6,6 +6,7 @@ using std::cout;
 int main()
 {
 	const char* name = "Example.txt";
+	const char* n = "SadPoint.txt";
 	Matrix M(2, 2, 16.23);
 	M.PrintM(M);
 	double s = M.sumElements();
@@ -23,5 +24,8 @@ int main()
 	M.LocalMaxMinMatrix(Q);
 	M.MinLine(Q);
 	M.MaxColumn(Q);
+	Matrix One = M.readfile(n, 3, 4);
+	M.PrintM(One);
+	M.SadPoint(One);
 	return 0;
 }

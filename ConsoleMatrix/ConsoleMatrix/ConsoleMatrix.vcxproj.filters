@@ -31,5 +31,8 @@
     <Text Include="Example.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
+    <Text Include="SadPoint.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
   </ItemGroup>
 </Project>

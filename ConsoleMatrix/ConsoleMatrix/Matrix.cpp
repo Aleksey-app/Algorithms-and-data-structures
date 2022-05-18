@@ -321,3 +321,33 @@ void Matrix::MaxColumn(const Matrix & M)
 	std::sort(sum.begin(), sum.end());
 	cout << "Max " << sum[one-1] << endl;
 }
+void Matrix::SadPoint(const Matrix & M)
+{
+	vector<double> Aline, Bcolumn;
+	for (int i = 0; i < M.line; i++) {
+		double min = M.mat[i][0];
+		for (int j = 0; j < M.column; j++) {
+			if (min > M.mat[i][j]) {
+				min = M.mat[i][j];
+			}
+		}
+		Aline.push_back(min);
+	}
+	for (int i = 0; i < M.column; i++) {
+		double max = M.mat[0][i];
+		for (int j = 0; j < M.line; j++) {
+			if (max < M.mat[j][i]) {
+				max = M.mat[j][i];
+			}
+		}
+		Bcolumn.push_back(max);
+	}
+	std::sort(Aline.begin(), Aline.end());
+	cout << Aline[Aline.size() - 1];
+	std::sort(Bcolumn.begin(), Bcolumn.end());
+	for (vector<double>::iterator it = Aline.begin(); it != Aline.end(); ++it)
+		cout << *it << " ";
+	cout << endl;
+	for (vector<double>::iterator it = Bcolumn.begin(); it != Bcolumn.end(); ++it)
+		cout << *it << " ";
+}
