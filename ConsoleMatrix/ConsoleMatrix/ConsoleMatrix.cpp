@@ -22,5 +22,6 @@ int main()
 	M.MatrixColumn(Q);*/
 	M.LocalMaxMinMatrix(Q);
 	M.MinLine(Q);
+	M.MaxColumn(Q);
 	return 0;
 }

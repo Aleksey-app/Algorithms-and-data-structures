@@ -302,5 +302,22 @@ void Matrix::MinLine(const Matrix & M)
 		sum.push_back(max);
 	}
 	std::sort(sum.begin(), sum.end());
-	cout << "Minimum element in rows " << sum[0] << endl;
+	cout << "Min " << sum[0] << endl;
+}
+void Matrix::MaxColumn(const Matrix & M)
+{
+	vector<double> sum;
+	int one = 0;
+	for (int i = 0; i < M.column; i++) {
+		double min = M.mat[0][i];
+		for (int j = 0; j < M.line; j++) {
+			if (min > M.mat[j][i]) {
+				min = M.mat[j][i];
+			}
+		}
+		sum.push_back(min);
+		one++;
+	}
+	std::sort(sum.begin(), sum.end());
+	cout << "Max " << sum[one-1] << endl;
 }
