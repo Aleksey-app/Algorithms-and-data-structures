@@ -155,53 +155,53 @@ void Matrix::MatrixColumn(const Matrix & M)
 	}
 }
 void Matrix::LocalMaxMinMatrix(const Matrix & M) {
-	vector<int> max, min;	//empty vector to store points of local maxima and minima
+	vector<double> max, min;	//empty vector to store points of local maxima and minima
 	int MaxSum = 0, MinSum = 0;
 	if (M.line >= 2 && M.column >= 2) {
 		if (M.mat[0][0] > M.mat[0][1] && M.mat[0][0] > M.mat[1][1] && M.mat[0][0] > M.mat[1][0]) {	//левый верхний угол
-			max.push_back(MaxSum);
+			max.push_back(M.mat[0][0]);
 			MaxSum++;
 		}
 		else if (M.mat[0][0] < M.mat[0][1] && M.mat[0][0] < M.mat[1][1] && M.mat[0][0] < M.mat[1][0]) {
-			min.push_back(MinSum);
+			min.push_back(M.mat[0][0]);
 			MinSum++;
 		}
 		//правый верхний угол
 		if (M.mat[0][column - 1] > M.mat[0][column - 2] && M.mat[0][column - 1] > M.mat[1][column - 2] && M.mat[0][column - 1] > M.mat[1][column - 1]) {
-			max.push_back(MaxSum);
+			max.push_back(M.mat[0][column-1]);
 			MaxSum++;
 		}
 		else if (M.mat[0][column - 1] < M.mat[0][column - 2] && M.mat[0][column - 1] < M.mat[1][column - 2] && M.mat[0][column - 1] < M.mat[1][column - 1]) {
-			min.push_back(MinSum);
+			min.push_back(M.mat[0][column-1]);
 			MinSum++;
 		}
 		//правый нижний угол
 		if (M.mat[line - 1][column - 1] > M.mat[line - 1][column - 2] && M.mat[line - 1][column - 1] > M.mat[line - 2][column - 2] && M.mat[line - 1][column - 1] > M.mat[line - 2][column - 1]) {
-			max.push_back(MaxSum);
+			max.push_back(M.mat[line-1][column-1]);
 			MaxSum++;
 		}
 		else if (M.mat[line - 1][column - 1] < M.mat[line - 1][column - 2] && M.mat[line - 1][column - 1] < M.mat[line - 2][column - 2] && M.mat[line - 1][column - 1] < M.mat[line - 2][column - 1]) {
-			min.push_back(MinSum);
+			min.push_back(M.mat[line-1][column-1]);
 			MinSum++;
 		}
 		//левый нижний угол
 		if (M.mat[line - 1][0] > M.mat[line - 2][0] && M.mat[line - 1][0] > M.mat[line - 2][1] && M.mat[line - 1][0] > M.mat[line - 1][1]) {
-			max.push_back(MaxSum);
+			max.push_back(M.mat[line-1][0]);
 			MaxSum++;
 		}
 		else if (M.mat[line - 1][0] < M.mat[line - 2][0] && M.mat[line - 1][0] < M.mat[line - 2][1] && M.mat[line - 1][0] < M.mat[line - 1][1]) {
-			min.push_back(MinSum);
+			min.push_back(M.mat[line-1][0]);
 			MinSum++;
 		}
 		//верхняя строчка
 		if (M.column > 2) {
 			for (int j = 1; j < M.column - 1; j++) {
 				if (M.mat[0][j] > M.mat[0][j - 1] && M.mat[0][j] > M.mat[1][j - 1] && M.mat[0][j] > M.mat[1][j] && M.mat[0][j] > M.mat[1][j + 1] && M.mat[0][j] > M.mat[0][j + 1]) {
-					max.push_back(MaxSum);
+					max.push_back(M.mat[0][j]);
 					MaxSum++;
 				}
 				if (M.mat[0][j] < M.mat[0][j - 1] && M.mat[0][j] < M.mat[1][j - 1] && M.mat[0][j] < M.mat[1][j] && M.mat[0][j] < M.mat[1][j + 1] && M.mat[0][j] < M.mat[0][j + 1]) {
-					min.push_back(MinSum);
+					min.push_back(M.mat[0][j]);
 					MinSum++;
 				}
 			}
@@ -210,11 +210,57 @@ void Matrix::LocalMaxMinMatrix(const Matrix & M) {
 		if (M.line > 2) {
 			for (int i = 1; i < M.line - 1; i++) {
 				if (M.mat[i][column - 1] > M.mat[i - 1][column - 1] && M.mat[i][column - 1] > M.mat[i - 1][column - 2] && M.mat[i][column - 1] > M.mat[i][column - 2] && M.mat[i][column - 1] > M.mat[i + 1][column - 2] && M.mat[i][column - 1] > M.mat[i + 1][column - 1]) {
-					max.push_back(MaxSum);
+					max.push_back(M.mat[i][column-1]);
 					MaxSum++;
 				}
+				if (M.mat[i][column - 1] < M.mat[i - 1][column - 1] && M.mat[i][column - 1] < M.mat[i - 1][column - 2] && M.mat[i][column - 1] < M.mat[i][column - 2] && M.mat[i][column - 1] < M.mat[i + 1][column - 2] && M.mat[i][column - 1] < M.mat[i + 1][column - 1]) {
+					min.push_back(M.mat[i][column-1]);
+					MinSum++;
+				}
 			}
-
+		}
+		//нижняя строка матрицы
+		if (M.column > 2) {
+			for (int j = 1; j < M.column - 1; j++) {
+				if (M.mat[line - 1][j] > M.mat[line - 1][j - 1] && M.mat[line - 1][j] > M.mat[line - 2][j - 1] && M.mat[line - 1][j] > M.mat[line - 2][j] && M.mat[line - 1][j] > M.mat[line - 2][j + 1] && M.mat[line - 1][j] > M.mat[line - 1][j + 1]) {
+					max.push_back(M.mat[line-1][j]);
+					MaxSum++;
+				}
+				if (M.mat[line - 1][j] < M.mat[line - 1][j - 1] && M.mat[line - 1][j] < M.mat[line - 2][j - 1] && M.mat[line - 1][j] < M.mat[line - 2][j] && M.mat[line - 1][j] < M.mat[line - 2][j + 1] && M.mat[line - 1][j] < M.mat[line - 1][j + 1]) {
+					min.push_back(M.mat[line-1][j]);
+					MinSum++;
+				}
+			}
+		}
+		//левая боковая колонка
+		if (M.line > 2) {
+			for (int i = 1; i < M.line - 1; i++) {
+				if (M.mat[i][0] > M.mat[i - 1][0] && M.mat[i][0] > M.mat[i - 1][1] && M.mat[i][0] > M.mat[i][1] && M.mat[i][0] > M.mat[i + 1][1] && M.mat[i][0] > M.mat[i + 1][0]) {
+					max.push_back(M.mat[i][0]);
+					MaxSum++;
+				}
+				if (M.mat[i][0] < M.mat[i - 1][0] && M.mat[i][0] < M.mat[i - 1][1] && M.mat[i][0] < M.mat[i][1] && M.mat[i][0] < M.mat[i + 1][1] && M.mat[i][0] < M.mat[i + 1][0]) {
+					min.push_back(M.mat[i][0]);
+					MinSum++;
+				}
+			}
+		}
+		//середина матрицы
+		if (M.line >= 3 && M.column >= 3) {
+			for (int i = 1; i < M.line-1; i++) {
+				for (int j = 1; j < M.column-1; j++) {
+					if (M.mat[i][j] > M.mat[i][j - 1] && M.mat[i][j] > M.mat[i - 1][j - 1] && M.mat[i][j] > M.mat[i - 1][j] && M.mat[i][j] > M.mat[i - 1][j + 1] && M.mat[i][j] > M.mat[i][j + 1]
+						&& M.mat[i][j] > M.mat[i + 1][j + 1] && M.mat[i][j] > M.mat[i + 1][j] && M.mat[i][j] > M.mat[i + 1][j - 1]) {
+						max.push_back(M.mat[i][j]);
+						MaxSum++;
+					}
+					if (M.mat[i][j] < M.mat[i][j - 1] && M.mat[i][j] < M.mat[i - 1][j - 1] && M.mat[i][j] < M.mat[i - 1][j] && M.mat[i][j] < M.mat[i - 1][j + 1] && M.mat[i][j] < M.mat[i][j + 1]
+						&& M.mat[i][j] < M.mat[i + 1][j + 1] && M.mat[i][j] < M.mat[i + 1][j] && M.mat[i][j] < M.mat[i + 1][j - 1]) {
+						min.push_back(M.mat[i][j]);
+						MinSum++;
+					}
+				}
+			}
 		}
 		if (max.size() > 0) {
 			cout << "Points of Local maxima found " << MaxSum << " : ";
