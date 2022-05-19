@@ -159,7 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Example.txt" />
-    <Text Include="Mat4x12.txt" />
+    <Text Include="Mat4x7.txt" />
     <Text Include="SadPointOne3x4.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

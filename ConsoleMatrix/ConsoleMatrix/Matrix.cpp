@@ -31,6 +31,26 @@ double Matrix::operator()(const unsigned & row, const unsigned & col) const
 {
 	return this->mat[row][col];
 }
+Matrix Matrix::operator=(const Matrix & rhs)
+{
+	if (&rhs == this) {
+		return *this;
+	}
+	unsigned new_rows = rhs.get_line();
+	unsigned new_cols = rhs.get_column();
+	mat.resize(new_rows);
+	for (unsigned i = 0; i < mat.size(); i++) {
+		mat[i].resize(new_cols);
+	}
+	for (unsigned i = 0; i < new_rows; i++) {
+		for (unsigned j = 0; j < new_cols; j++) {
+			mat[i][j] = rhs(i, j);
+		}
+	}
+	line = new_rows;
+	column = new_cols;
+	return *this;
+}
 double Matrix::sumElements() const
 {
 	double sum = 0;
