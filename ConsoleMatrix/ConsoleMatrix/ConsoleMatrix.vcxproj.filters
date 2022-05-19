@@ -31,7 +31,10 @@
     <Text Include="Example.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
-    <Text Include="SadPoint.txt">
+    <Text Include="MatOne4x4.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="SadPoint3x4.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
   </ItemGroup>

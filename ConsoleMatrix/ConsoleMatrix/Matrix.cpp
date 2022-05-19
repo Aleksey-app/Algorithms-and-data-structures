@@ -323,12 +323,17 @@ void Matrix::MaxColumn(const Matrix & M)
 }
 void Matrix::SadPoint(const Matrix & M)
 {
-	vector<double> Aline, Bcolumn;
+	vector<double> Aline, Bcolumn, Happens;
+	unsigned sum = 0;
 	for (int i = 0; i < M.line; i++) {
 		double min = M.mat[i][0];
 		for (int j = 0; j < M.column; j++) {
 			if (min > M.mat[i][j]) {
 				min = M.mat[i][j];
+			}
+			else if (min == M.mat[i][j]) {
+				Happens.push_back(min);
+				sum++;
 			}
 		}
 		Aline.push_back(min);
@@ -339,15 +344,35 @@ void Matrix::SadPoint(const Matrix & M)
 			if (max < M.mat[j][i]) {
 				max = M.mat[j][i];
 			}
+			else if (max == M.mat[j][i]) {
+				Happens.push_back(max);
+				sum++;
+			}
 		}
 		Bcolumn.push_back(max);
 	}
 	std::sort(Aline.begin(), Aline.end());
-	cout << Aline[Aline.size() - 1];
 	std::sort(Bcolumn.begin(), Bcolumn.end());
-	for (vector<double>::iterator it = Aline.begin(); it != Aline.end(); ++it)
-		cout << *it << " ";
-	cout << endl;
-	for (vector<double>::iterator it = Bcolumn.begin(); it != Bcolumn.end(); ++it)
-		cout << *it << " ";
+	if (Aline[Aline.size() - 1] < Bcolumn[0]) {
+		cout << "There are no saddle points in the matrix" << endl;
+	}
+	else if (sum / 2 == M.column*M.line) {
+		cout << "All elements" << sum / 2 << endl;
+		cout << "All elements of the matrix are equal " << Happens[0] << endl;
+	}
+	else if (Aline[Aline.size() - 1] == Bcolumn[0] && sum / 2 != M.column*M.line) {
+		vector<double> number;
+		for (double sumA : Aline) {
+			for (double sumB : Bcolumn) {
+				if (sumA == sumB) {
+					number.push_back(sumB);
+				}
+			}
+		}
+		cout << "All elements[-] ";
+		for (double n : number) {
+			cout << n << " | ";
+		}
+		cout << endl;
+	}
 }
